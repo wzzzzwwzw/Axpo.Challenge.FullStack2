@@ -1,61 +1,88 @@
-using Microsoft.AspNetCore.Mvc;
-using Axpo.Challenge.FullStack.Models.Domain;
-using Axpo.Challenge.FullStack.Services;
+using System.Net.Http;
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Axpo.Challenge.FullStack.Models.Domain;
 
-namespace Axpo.Challenge.FullStack.Controllers
+namespace Axpo.Challenge.FullStack.Services
 {
     /// <summary>
-    /// Controller for managing balancing operations.
+    /// Service for managing balancing operations.
     /// </summary>
-    [ApiController]
-    [Route("api/[controller]")]
-    public class BalanceService : ControllerBase
+    public class BalancingService : IBalancingService
     {
-        private readonly IBalancingService _service;
+        private readonly HttpClient _httpClient;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BalanceService"/> class.
+        /// Initializes a new instance of the <see cref="BalancingService"/> class.
         /// </summary>
-        /// <param name="service">The balancing service.</param>
-        public BalanceService(IBalancingService service)
+        /// <param name="httpClient">The HTTP client.</param>
+        public BalancingService(HttpClient httpClient)
         {
-            _service = service ?? throw new ArgumentNullException(nameof(service));
+            _httpClient = httpClient;
         }
 
         /// <summary>
         /// Gets the list of balancing circles.
         /// </summary>
         /// <returns>A list of balancing circles.</returns>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<BalancingCircle>>> GetBalancingCircles()
+        public async Task<IEnumerable<BalancingCircle>> GetBalancingCirclesAsync()
         {
-            var circles = await _service.GetBalancingCirclesAsync();
-            return Ok(circles);
+            var response = await _httpClient.GetAsync("/api/v1/balancing");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            var circles = JsonSerializer.Deserialize<IEnumerable<BalancingCircle>>(content);
+            return circles ?? Enumerable.Empty<BalancingCircle>();
         }
 
         /// <summary>
         /// Gets the forecast data for a specific member.
         /// </summary>
-        /// <param name="id">The member ID.</param>
+        /// <param name="memberId">The member ID.</param>
         /// <returns>The forecast data for the specified member.</returns>
-        [HttpGet("member/{id}/forecast")]
-        public async Task<ActionResult<IEnumerable<ForecastData>>> GetMemberForecast(int id)
+        public async Task<IEnumerable<ForecastData>> GetForecastDataForMemberAsync(int memberId)
         {
-            var forecast = await _service.GetForecastDataForMemberAsync(id);
-            return Ok(forecast);
+            var response = await _httpClient.GetAsync($"/api/v1/balancing/member/{memberId}/forecast");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            var forecastData = JsonSerializer.Deserialize<IEnumerable<ForecastData>>(content);
+            return forecastData ?? Enumerable.Empty<ForecastData>();
         }
 
         /// <summary>
-        /// Gets the imbalances for each balancing circle.
+        /// Calculates the imbalances for each balancing circle.
         /// </summary>
         /// <returns>A dictionary with the date and corresponding imbalance value.</returns>
-        [HttpGet("imbalances")]
-        public async Task<ActionResult<Dictionary<DateTime, double>>> GetImbalances()
+        public async Task<Dictionary<DateTime, double>> CalculateImbalancesAsync()
         {
-            var imbalances = await _service.CalculateImbalancesAsync();
-            return Ok(imbalances);
+            var circles = await GetBalancingCirclesAsync();
+            var imbalances = new Dictionary<DateTime, double>();
+
+            foreach (var circle in circles)
+            {
+                foreach (var member in circle.Members)
+                {
+                    var forecastData = await GetForecastDataForMemberAsync(member.Id);
+                    foreach (var data in forecastData)
+                    {
+                        if (!imbalances.ContainsKey(data.Date))
+                        {
+                            imbalances[data.Date] = 0;
+                        }
+
+                        if (member.IsProducer)
+                        {
+                            imbalances[data.Date] += data.Forecast;
+                        }
+                        else
+                        {
+                            imbalances[data.Date] -= data.Forecast;
+                        }
+                    }
+                }
+            }
+
+            return imbalances;
         }
     }
 }

@@ -34,36 +34,6 @@
             </summary>
             <returns>A dictionary with the date and corresponding imbalance value.</returns>
         </member>
-        <member name="T:Axpo.Challenge.FullStack.Controllers.BalanceService">
-            <summary>
-            Controller for managing balancing operations.
-            </summary>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalanceService.#ctor(Axpo.Challenge.FullStack.Services.IBalancingService)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Axpo.Challenge.FullStack.Controllers.BalanceService"/> class.
-            </summary>
-            <param name="service">The balancing service.</param>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalanceService.GetBalancingCircles">
-            <summary>
-            Gets the list of balancing circles.
-            </summary>
-            <returns>A list of balancing circles.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalanceService.GetMemberForecast(System.Int32)">
-            <summary>
-            Gets the forecast data for a specific member.
-            </summary>
-            <param name="id">The member ID.</param>
-            <returns>The forecast data for the specified member.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalanceService.GetImbalances">
-            <summary>
-            Gets the imbalances for each balancing circle.
-            </summary>
-            <returns>A dictionary with the date and corresponding imbalance value.</returns>
-        </member>
         <member name="T:Axpo.Challenge.FullStack.Data.EnergyBalanceDbContext">
             <summary>
             Represents the database context for energy balance operations.
@@ -234,6 +204,36 @@
             <summary>
             Gets or sets the value of the timeseries entry.
             </summary>
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.Services.BalancingService">
+            <summary>
+            Service for managing balancing operations.
+            </summary>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Axpo.Challenge.FullStack.Services.BalancingService"/> class.
+            </summary>
+            <param name="httpClient">The HTTP client.</param>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.GetBalancingCirclesAsync">
+            <summary>
+            Gets the list of balancing circles.
+            </summary>
+            <returns>A list of balancing circles.</returns>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.GetForecastDataForMemberAsync(System.Int32)">
+            <summary>
+            Gets the forecast data for a specific member.
+            </summary>
+            <param name="memberId">The member ID.</param>
+            <returns>The forecast data for the specified member.</returns>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.CalculateImbalancesAsync">
+            <summary>
+            Calculates the imbalances for each balancing circle.
+            </summary>
+            <returns>A dictionary with the date and corresponding imbalance value.</returns>
         </member>
     </members>
 </doc>
