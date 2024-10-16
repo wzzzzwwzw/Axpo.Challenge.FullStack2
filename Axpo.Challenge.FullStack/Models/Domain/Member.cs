@@ -16,17 +16,17 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// <summary>
         /// Gets or sets the name of the member.
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the member, e.g., "Producer" or "Consumer".
         /// </summary>
-        public string Type { get; set; } // "Producer" or "Consumer"
+        public string? Type { get; set; } // "Producer" or "Consumer"
 
         /// <summary>
         /// Gets or sets the category of the member, e.g., "Solar", "Wind", "Retailer", "Industrials".
         /// </summary>
-        public string Category { get; set; } // "Solar", "Wind", "Retailer", "Industrials"
+        public string? Category { get; set; } // "Solar", "Wind", "Retailer", "Industrials"
 
         /// <summary>
         /// Gets or sets the collection of forecast data associated with the member.
