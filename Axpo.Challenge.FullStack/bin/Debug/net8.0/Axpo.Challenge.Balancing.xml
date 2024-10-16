@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Axpo.Challenge.Balancing</name>
+    </assembly>
+    <members>
+        <member name="T:Axpo.Challenge.Balancing.Model.BalancingCircle">
+            <summary>
+            Represents a balancing circle.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.BalancingCircle.Id">
+            <summary>
+            The unique identifier of the balancing circle.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.BalancingCircle.Name">
+            <summary>
+            The name of the balancing circle.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.BalancingCircle.Members">
+            <summary>
+            The members of the balancing circle.
+            </summary>
+        </member>
+        <member name="T:Axpo.Challenge.Balancing.Model.ForecastData">
+            <summary>
+            Represents the forecast data for a member.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.ForecastData.MemberId">
+            <summary>
+            The unique identifier of the member.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.ForecastData.Forecast">
+            <summary>
+            The forecast data for the member.
+            </summary>
+        </member>
+        <member name="T:Axpo.Challenge.Balancing.Model.Members">
+            <summary>
+            Represents a member in a balancing circle.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.Members.Id">
+            <summary>
+            The unique identifier of the member.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.Members.Name">
+            <summary>
+            The name of the member.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.Members.Type">
+            <summary>
+            The type of the member allowed values are "Producer" and "Consumer".
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.Members.Category">
+            <summary>
+            The category of the member allowend values are "Solar", "Wind", "Retailer" and "Industrials".
+            </summary>
+        </member>
+        <member name="T:Axpo.Challenge.Balancing.Model.TimeseriesEntry">
+            <summary>
+            Represents a timeseries entry.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.TimeseriesEntry.Date">
+            <summary>
+            The date of the entry.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.Balancing.Model.TimeseriesEntry.Value">
+            <summary>
+            The value of the entry.
+            </summary>
+        </member>
+    </members>
+</doc>

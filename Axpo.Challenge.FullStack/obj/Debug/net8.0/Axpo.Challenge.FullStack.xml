@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Axpo.Challenge.FullStack</name>
+    </assembly>
+    <members>
+        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.Get">
+            <summary>
+            Gets Balancing Circles
+            </summary>
+            <returns>List of current Balancing Circles</returns>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.GetMemberForecast(System.Guid)">
+            <summary>
+            Get forecast data for a given member
+            </summary>
+            <param name="id">Unique identifier of the member</param>
+            <returns>Forecast data</returns>
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.Migrations.InitialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
