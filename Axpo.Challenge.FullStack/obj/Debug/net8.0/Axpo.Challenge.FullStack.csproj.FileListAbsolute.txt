@@ -37,9 +37,6 @@ C:\Users\MAUDEYZA\source\repos\aol.challenge.fullstack\api\Axpo.Challenge.FullSt
 C:\Users\MAUDEYZA\source\repos\aol.challenge.fullstack\api\Axpo.Challenge.FullStack\obj\Debug\net8.0\Axpo.Challenge.FullStack.xml
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\appsettings.json
-C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
-C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
-C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\Axpo.Challenge.FullStack.exe
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\Axpo.Challenge.FullStack.deps.json
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\Axpo.Challenge.FullStack.runtimeconfig.json
@@ -105,10 +102,6 @@ C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.Fu
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\System.Security.Permissions.dll
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\System.Windows.Extensions.dll
-C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\xunit.abstractions.dll
-C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\xunit.assert.dll
-C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\xunit.core.dll
-C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\xunit.execution.dotnet.dll
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll

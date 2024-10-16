@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Axpo.Challenge.FullStack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ae124406d42b62d382798e9ebd369394e96287f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e1956a9c6552772766a6dbde49dcf5e998b910f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Axpo.Challenge.FullStack")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Axpo.Challenge.FullStack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -5,31 +5,26 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
-	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Axpo.Challenge.Balancing" Version="1.0.1" />
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	    <PrivateAssets>all</PrivateAssets>
-	  </PackageReference>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
-	  <PackageReference Include="Moq" Version="4.20.72" />
-	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
-	  <PackageReference Include="xunit" Version="2.9.2" />
-	  <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	    <PrivateAssets>all</PrivateAssets>
-	  </PackageReference>
+    <PackageReference Include="Axpo.Challenge.Balancing" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
   </ItemGroup>
 
-	<Target Name="_ResolveCopyLocalNuGetPkgXmls" AfterTargets="ResolveReferences">
-		<ItemGroup>
-			<!-- Copy XML files from all PackageReferences to output dir -->
-			<ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->'%(RootDir)%(Directory)%(Filename).xml')" Condition="('%(Filename)' == 'Axpo.Challenge.Balancing') and Exists('%(RootDir)%(Directory)%(Filename).xml')" />
-		</ItemGroup>
-	</Target>
+  <Target Name="_ResolveCopyLocalNuGetPkgXmls" AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <!-- Copy XML files from all PackageReferences to output dir -->
+      <ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->'%(RootDir)%(Directory)%(Filename).xml')" Condition="('%(Filename)' == 'Axpo.Challenge.Balancing') and Exists('%(RootDir)%(Directory)%(Filename).xml')" />
+    </ItemGroup>
+  </Target>
 </Project>
