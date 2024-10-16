@@ -32,5 +32,10 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// Gets or sets the collection of forecast data associated with the member.
         /// </summary>
         public ICollection<ForecastData> Forecasts { get; set; }
+
+          /// <summary>
+        /// Gets or sets a value indicating whether the member is a producer.
+        /// </summary>
+        public bool IsProducer { get; set; } // Add this property
     }
 }

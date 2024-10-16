@@ -31,5 +31,7 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// Gets or sets the forecast value.
         /// </summary>
         public double Forecast { get; set; }
+
+       
     }
 }

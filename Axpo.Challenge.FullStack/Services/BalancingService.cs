@@ -1,42 +1,61 @@
-using Axpo.Challenge.FullStack.Data;
+using Microsoft.AspNetCore.Mvc;
 using Axpo.Challenge.FullStack.Models.Domain;
-using Microsoft.EntityFrameworkCore;
+using Axpo.Challenge.FullStack.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Axpo.Challenge.FullStack.Services
+namespace Axpo.Challenge.FullStack.Controllers
 {
     /// <summary>
-    /// Service for managing balancing operations.
+    /// Controller for managing balancing operations.
     /// </summary>
-    public class BalancingService
+    [ApiController]
+    [Route("api/[controller]")]
+    public class BalanceService : ControllerBase
     {
-        private readonly EnergyBalanceDbContext _context;
+        private readonly IBalancingService _service;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BalancingService"/> class.
+        /// Initializes a new instance of the <see cref="BalanceService"/> class.
         /// </summary>
-        /// <param name="context">The database context.</param>
-        public BalancingService(EnergyBalanceDbContext context)
+        /// <param name="service">The balancing service.</param>
+        public BalanceService(IBalancingService service)
         {
-            _context = context;
+            _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
         /// <summary>
         /// Gets the list of balancing circles.
         /// </summary>
         /// <returns>A list of balancing circles.</returns>
-        public async Task<IEnumerable<BalancingCircle>> GetBalancingCirclesAsync()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BalancingCircle>>> GetBalancingCircles()
         {
-            return await _context.BalancingCircles.Include(b => b.Members).ToListAsync();
+            var circles = await _service.GetBalancingCirclesAsync();
+            return Ok(circles);
         }
 
         /// <summary>
         /// Gets the forecast data for a specific member.
         /// </summary>
-        /// <param name="memberId">The member ID.</param>
+        /// <param name="id">The member ID.</param>
         /// <returns>The forecast data for the specified member.</returns>
-        public async Task<IEnumerable<ForecastData>> GetForecastDataForMemberAsync(int memberId)
+        [HttpGet("member/{id}/forecast")]
+        public async Task<ActionResult<IEnumerable<ForecastData>>> GetMemberForecast(int id)
         {
-            return await _context.Forecasts.Where(f => f.MemberId == memberId).ToListAsync();
+            var forecast = await _service.GetForecastDataForMemberAsync(id);
+            return Ok(forecast);
+        }
+
+        /// <summary>
+        /// Gets the imbalances for each balancing circle.
+        /// </summary>
+        /// <returns>A dictionary with the date and corresponding imbalance value.</returns>
+        [HttpGet("imbalances")]
+        public async Task<ActionResult<Dictionary<DateTime, double>>> GetImbalances()
+        {
+            var imbalances = await _service.CalculateImbalancesAsync();
+            return Ok(imbalances);
         }
     }
 }

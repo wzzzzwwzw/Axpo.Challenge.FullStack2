@@ -1,25 +1,23 @@
-﻿using Axpo.Challenge.FullStack.Models.Domain;
+﻿using Microsoft.AspNetCore.Mvc;
+using Axpo.Challenge.FullStack.Models.Domain;
 using Axpo.Challenge.FullStack.Services;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Axpo.Challenge.Balancing.Controllers
+namespace Axpo.Challenge.FullStack.Controllers
 {
     /// <summary>
     /// Controller for managing balancing operations.
     /// </summary>
     [ApiController]
-    [Route("api/v1/balancing")]
+    [Route("api/[controller]")]
     public class BalancingController : ControllerBase
     {
-        private readonly BalancingService _service;
+        private readonly IBalancingService _service;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BalancingController"/> class.
         /// </summary>
         /// <param name="service">The balancing service.</param>
-        public BalancingController(BalancingService service)
+        public BalancingController(IBalancingService service)
         {
             _service = service;
         }
@@ -31,7 +29,7 @@ namespace Axpo.Challenge.Balancing.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BalancingCircle>>> GetBalancingCircles()
         {
-            var circles = await _service.GetBalancingCirclesAsync();
+            var circles = await this._service.GetBalancingCirclesAsync();
             return Ok(circles);
         }
 
@@ -43,8 +41,19 @@ namespace Axpo.Challenge.Balancing.Controllers
         [HttpGet("member/{id}/forecast")]
         public async Task<ActionResult<IEnumerable<ForecastData>>> GetMemberForecast(int id)
         {
-            var forecast = await _service.GetForecastDataForMemberAsync(id); // Updated method call
+            var forecast = await this._service.GetForecastDataForMemberAsync(id);
             return Ok(forecast);
+        }
+
+        /// <summary>
+        /// Gets the imbalances for each balancing circle.
+        /// </summary>
+        /// <returns>A dictionary with the date and corresponding imbalance value.</returns>
+        [HttpGet("imbalances")]
+        public async Task<ActionResult<Dictionary<DateTime, double>>> GetImbalances()
+        {
+            var imbalances = await _service.CalculateImbalancesAsync();
+            return Ok(imbalances);
         }
     }
 }

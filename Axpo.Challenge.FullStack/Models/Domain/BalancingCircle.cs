@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Axpo.Challenge.FullStack.Models.Domain
@@ -16,11 +15,11 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// <summary>
         /// Gets or sets the name of the balancing circle.
         /// </summary>
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the members of the balancing circle.
         /// </summary>
-        public ICollection<Member>? Members { get; set; }
+        public ICollection<Member> Members { get; set; } = new List<Member>(); // Initialize to an empty list
     }
 }
