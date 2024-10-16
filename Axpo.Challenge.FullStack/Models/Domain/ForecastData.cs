@@ -20,7 +20,7 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// <summary>
         /// Gets or sets the member associated with the forecast data.
         /// </summary>
-        public Member Member { get; set; }
+        public Member? Member { get; set; } // Declare as nullable
 
         /// <summary>
         /// Gets or sets the date of the forecast.
