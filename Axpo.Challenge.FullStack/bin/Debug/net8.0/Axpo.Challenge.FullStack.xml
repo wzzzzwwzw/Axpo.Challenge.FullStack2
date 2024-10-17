@@ -9,11 +9,12 @@
             Controller for managing balancing operations.
             </summary>
         </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.#ctor(Axpo.Challenge.FullStack.Services.IBalancingService)">
+        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.#ctor(Axpo.Challenge.FullStack.Services.IBalancingService,Microsoft.Extensions.Logging.ILogger{Axpo.Challenge.FullStack.Controllers.BalancingController})">
             <summary>
             Initializes a new instance of the <see cref="T:Axpo.Challenge.FullStack.Controllers.BalancingController"/> class.
             </summary>
             <param name="service">The balancing service.</param>
+            <param name="logger">The logger.</param>
         </member>
         <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.GetBalancingCircles">
             <summary>
@@ -98,6 +99,54 @@
             <inheritdoc />
         </member>
         <member name="M:Axpo.Challenge.FullStack.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.Migrations.AddIsProducerAndMemberId">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddIsProducerAndMemberId.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddIsProducerAndMemberId.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddIsProducerAndMemberId.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.Migrations.SyncSchema">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.SyncSchema.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.SyncSchema.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.SyncSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.Migrations.AddForecastData">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddForecastData.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddForecastData.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddForecastData.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Axpo.Challenge.FullStack.Models.Domain.BalancingCircle">
@@ -185,6 +234,16 @@
             Gets or sets a value indicating whether the member is a producer.
             </summary>
         </member>
+        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.BalancingCircleId">
+            <summary>
+            Gets or sets the balancing circle ID associated with the member.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.BalancingCircle">
+            <summary>
+            Gets or sets the balancing circle associated with the member.
+            </summary>
+        </member>
         <member name="T:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry">
             <summary>
             Represents an entry in a timeseries.
@@ -205,16 +264,27 @@
             Gets or sets the value of the timeseries entry.
             </summary>
         </member>
+        <member name="P:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry.MemberId">
+            <summary>
+            Gets or sets the member ID associated with the timeseries entry.
+            </summary>
+        </member>
+        <member name="P:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry.Member">
+            <summary>
+            Gets or sets the member associated with the timeseries entry.
+            </summary>
+        </member>
         <member name="T:Axpo.Challenge.FullStack.Services.BalancingService">
             <summary>
             Service for managing balancing operations.
             </summary>
         </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.#ctor(System.Net.Http.HttpClient)">
+        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILogger{Axpo.Challenge.FullStack.Services.BalancingService})">
             <summary>
             Initializes a new instance of the <see cref="T:Axpo.Challenge.FullStack.Services.BalancingService"/> class.
             </summary>
             <param name="httpClient">The HTTP client.</param>
+            <param name="logger">The logger.</param>
         </member>
         <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.GetBalancingCirclesAsync">
             <summary>
@@ -234,6 +304,43 @@
             Calculates the imbalances for each balancing circle.
             </summary>
             <returns>A dictionary with the date and corresponding imbalance value.</returns>
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.Services.IBalancingService">
+            <summary>
+            Provides methods to manage balancing services.
+            </summary>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Services.IBalancingService.GetBalancingCirclesAsync">
+            <summary>
+            Gets the balancing circles asynchronously.
+            </summary>
+            <returns>A task that represents the asynchronous operation. The task result contains a collection of balancing circles.</returns>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Services.IBalancingService.GetForecastDataForMemberAsync(System.Int32)">
+            <summary>
+            Gets the forecast data for a specific member asynchronously.
+            </summary>
+            <param name="memberId">The ID of the member.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains a collection of forecast data.</returns>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.Services.IBalancingService.CalculateImbalancesAsync">
+            <summary>
+            Calculates the imbalances asynchronously.
+            </summary>
+            <returns>A task that represents the asynchronous operation. The task result contains a dictionary with date and imbalance value.</returns>
+        </member>
+        <member name="T:Axpo.Challenge.FullStack.SeedData.DataSeeder">
+            <summary>
+            Provides methods to seed the database with initial data.
+            </summary>
+        </member>
+        <member name="M:Axpo.Challenge.FullStack.SeedData.DataSeeder.SeedDataAsync(Axpo.Challenge.FullStack.Data.EnergyBalanceDbContext,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Seeds the database with initial data if it is empty.
+            </summary>
+            <param name="context">The database context to be seeded.</param>
+            <param name="loggerFactory">The logger factory.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
         </member>
     </members>
 </doc>

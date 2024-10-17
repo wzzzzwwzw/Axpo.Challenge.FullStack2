@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Axpo.Challenge.FullStack.Models.Domain;
 using Axpo.Challenge.FullStack.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq; // Ensure to include this
+using Microsoft.Extensions.Logging;
 
 namespace Axpo.Challenge.FullStack.Controllers
 {
@@ -8,18 +12,21 @@ namespace Axpo.Challenge.FullStack.Controllers
     /// Controller for managing balancing operations.
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class BalancingController : ControllerBase
     {
         private readonly IBalancingService _service;
+        private readonly ILogger<BalancingController> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BalancingController"/> class.
         /// </summary>
         /// <param name="service">The balancing service.</param>
-        public BalancingController(IBalancingService service)
+        /// <param name="logger">The logger.</param>
+        public BalancingController(IBalancingService service, ILogger<BalancingController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         /// <summary>
@@ -29,7 +36,14 @@ namespace Axpo.Challenge.FullStack.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BalancingCircle>>> GetBalancingCircles()
         {
-            var circles = await this._service.GetBalancingCirclesAsync();
+            var circles = await _service.GetBalancingCirclesAsync();
+            
+            if (circles == null || !circles.Any())
+            {
+                _logger.LogWarning("No balancing circles were found."); // Log a warning
+                return NotFound(); // Handle the case where no data is found
+            }
+
             return Ok(circles);
         }
 
@@ -41,7 +55,14 @@ namespace Axpo.Challenge.FullStack.Controllers
         [HttpGet("member/{id}/forecast")]
         public async Task<ActionResult<IEnumerable<ForecastData>>> GetMemberForecast(int id)
         {
-            var forecast = await this._service.GetForecastDataForMemberAsync(id);
+            var forecast = await _service.GetForecastDataForMemberAsync(id);
+
+            if (forecast == null || !forecast.Any())
+            {
+                _logger.LogWarning($"No forecast data found for member {id}."); // Log a warning
+                return NotFound(); // Handle no forecast data
+            }
+
             return Ok(forecast);
         }
 
@@ -53,6 +74,13 @@ namespace Axpo.Challenge.FullStack.Controllers
         public async Task<ActionResult<Dictionary<DateTime, double>>> GetImbalances()
         {
             var imbalances = await _service.CalculateImbalancesAsync();
+
+            if (imbalances == null || !imbalances.Any())
+            {
+                _logger.LogWarning("No imbalances data found."); // Log a warning
+                return NotFound(); // Handle no imbalances data
+            }
+
             return Ok(imbalances);
         }
     }

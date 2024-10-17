@@ -21,5 +21,15 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// Gets or sets the value of the timeseries entry.
         /// </summary>
         public double Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the member ID associated with the timeseries entry.
+        /// </summary>
+        public int MemberId { get; set; } // Add this property
+
+        /// <summary>
+        /// Gets or sets the member associated with the timeseries entry.
+        /// </summary>
+        public Member Member { get; set; }
     }
 }

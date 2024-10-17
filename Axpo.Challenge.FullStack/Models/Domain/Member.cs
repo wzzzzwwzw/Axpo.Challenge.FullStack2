@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Axpo.Challenge.FullStack.Models.Domain
@@ -31,11 +30,21 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// <summary>
         /// Gets or sets the collection of forecast data associated with the member.
         /// </summary>
-        public ICollection<ForecastData> Forecasts { get; set; }
+        public ICollection<ForecastData> Forecasts { get; set; } = new List<ForecastData>(); // Initialize to avoid warning
 
-          /// <summary>
+        /// <summary>
         /// Gets or sets a value indicating whether the member is a producer.
         /// </summary>
         public bool IsProducer { get; set; } // Add this property
+
+        /// <summary>
+        /// Gets or sets the balancing circle ID associated with the member.
+        /// </summary>
+        public int BalancingCircleId { get; set; } // Add this property
+
+        /// <summary>
+        /// Gets or sets the balancing circle associated with the member.
+        /// </summary>
+        public BalancingCircle BalancingCircle { get; set; }
     }
 }

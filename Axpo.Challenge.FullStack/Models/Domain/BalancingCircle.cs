@@ -15,7 +15,7 @@ namespace Axpo.Challenge.FullStack.Models.Domain
         /// <summary>
         /// Gets or sets the name of the balancing circle.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty; // Initialize to avoid warning
 
         /// <summary>
         /// Gets or sets the members of the balancing circle.
