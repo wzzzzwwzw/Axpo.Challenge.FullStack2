@@ -7,6 +7,7 @@ using System.Globalization;
 using Axpo.Challenge.FullStack.SeedData;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization; // Add this using directive
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,28 +29,27 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:4200", "https://localhost:7150")
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowAnyOrigin();
     });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });
 
 // Configure DbContext
 builder.Services.AddDbContext<EnergyBalanceDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EnergyConnectionString")));
 // Register BalancingService
-//builder.Services.AddScoped<IBalancingService, BalancingService>();
+builder.Services.AddScoped<IBalancingService, BalancingService>();
 // Configure Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Energy API", Version = "v1" });
-});
-
-// Register the BalancingService with HttpClient and Logger
-builder.Services.AddHttpClient<IBalancingService, BalancingService>(client =>
-{
-    client.BaseAddress = new Uri("http://localhost:5295/"); // Set the base address for the HttpClient
 });
 
 // Register other services if necessary

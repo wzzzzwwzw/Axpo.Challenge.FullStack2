@@ -1,125 +1,84 @@
-using System;
-using System.Net.Http;
-using System.Text.Json;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Axpo.Challenge.FullStack.Data;
 using Axpo.Challenge.FullStack.Models.Domain;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Axpo.Challenge.FullStack.Services
 {
-    /// <summary>
-    /// Service for managing balancing operations.
-    /// </summary>
     public class BalancingService : IBalancingService
     {
-        private readonly HttpClient _httpClient;
-        private readonly ILogger<BalancingService> _logger;
+        private readonly EnergyBalanceDbContext _context;
+            private readonly ILogger<BalancingService> _logger;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BalancingService"/> class.
-        /// </summary>
-        /// <param name="httpClient">The HTTP client.</param>
-        /// <param name="logger">The logger.</param>
-        public BalancingService(HttpClient httpClient, ILogger<BalancingService> logger)
+
+        public BalancingService(EnergyBalanceDbContext context,ILogger<BalancingService> logger)
         {
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _httpClient.BaseAddress = new Uri("http://localhost:5295/"); // Set the base address
+            _context = context;
+            _logger = logger;
         }
 
-        /// <summary>
-        /// Gets the list of balancing circles.
-        /// </summary>
-        /// <returns>A list of balancing circles.</returns>
         public async Task<IEnumerable<BalancingCircle>> GetBalancingCirclesAsync()
-{
-    try
-    {
-        var response = await _httpClient.GetAsync("api/v1/balancing");
-        response.EnsureSuccessStatusCode();
+        {
+            return await _context.BalancingCircles.Include(bc => bc.Members).ToListAsync();
+        }
 
-        var content = await response.Content.ReadAsStringAsync();
-        var circles = JsonSerializer.Deserialize<IEnumerable<BalancingCircle>>(content);
-        return circles ?? new List<BalancingCircle>();
-    }
-    catch (HttpRequestException ex)
-    {
-        _logger.LogError(ex, "Error fetching balancing circles");
-        // Fallback or custom handling
-        return new List<BalancingCircle>(); // Returning an empty list to prevent crashing
-    }
-}
-        /// <summary>
-        /// Gets the forecast data for a specific member.
-        /// </summary>
-        /// <param name="memberId">The member ID.</param>
-        /// <returns>The forecast data for the specified member.</returns>
         public async Task<IEnumerable<ForecastData>> GetForecastDataForMemberAsync(int memberId)
         {
-            try
-            {
-                var response = await _httpClient.GetAsync($"balancing/member/{memberId}/forecast");
-                response.EnsureSuccessStatusCode();
-                var content = await response.Content.ReadAsStringAsync();
-
-                return JsonSerializer.Deserialize<IEnumerable<ForecastData>>(content) ?? new List<ForecastData>();
-            }
-            catch (HttpRequestException ex)
-            {
-                _logger.LogError(ex, $"Error fetching forecast data for member {memberId}");
-                throw new Exception($"Could not fetch forecast data for member {memberId}", ex);
-            }
-            catch (JsonException ex)
-            {
-                _logger.LogError(ex, $"Error deserializing forecast data for member {memberId}");
-                throw new Exception($"Could not deserialize forecast data for member {memberId}", ex);
-            }
+            return await _context.Forecasts.Where(f => f.MemberId == memberId).ToListAsync();
         }
 
-        /// <summary>
-        /// Calculates the imbalances for each balancing circle.
-        /// </summary>
-        /// <returns>A dictionary with the date and corresponding imbalance value.</returns>
-        public async Task<Dictionary<DateTime, double>> CalculateImbalancesAsync()
+   public async Task<Dictionary<DateTime, double>> CalculateImbalancesAsync(int balancingCircleId)
+    {
+        _logger.LogInformation("Calculating imbalances for Balancing Circle ID: {Id}", balancingCircleId);
+
+        try
         {
+            var circle = await _context.BalancingCircles
+                .Include(bc => bc.Members)
+                .ThenInclude(m => m.Forecasts)
+                .FirstOrDefaultAsync(bc => bc.Id == balancingCircleId);
+
+            if (circle == null)
+            {
+                _logger.LogWarning("Balancing circle not found for ID: {Id}", balancingCircleId);
+                throw new KeyNotFoundException("Balancing circle not found");
+            }
+
             var imbalances = new Dictionary<DateTime, double>();
 
-            try
+            foreach (var member in circle.Members)
             {
-                var circles = await GetBalancingCirclesAsync();
-
-                foreach (var circle in circles)
+                _logger.LogInformation("Processing member ID: {MemberId}", member.Id);
+                foreach (var forecast in member.Forecasts)
                 {
-                    foreach (var member in circle.Members)
+                    _logger.LogInformation("Processing forecast for date: {Date}, value: {Value}", forecast.Date, forecast.Forecast);
+                    if (!imbalances.ContainsKey(forecast.Date))
                     {
-                        var forecastData = await GetForecastDataForMemberAsync(member.Id);
-                        foreach (var data in forecastData)
-                        {
-                            if (!imbalances.ContainsKey(data.Date))
-                            {
-                                imbalances[data.Date] = 0;
-                            }
+                        imbalances[forecast.Date] = 0;
+                    }
 
-                            if (member.IsProducer)
-                            {
-                                imbalances[data.Date] += data.Forecast; // assuming data.Forecast is the inflow
-                            }
-                            else
-                            {
-                                imbalances[data.Date] -= data.Forecast; // assuming data.Forecast is the outflow
-                            }
-                        }
+                    if (member.IsProducer)
+                    {
+                        imbalances[forecast.Date] += forecast.Forecast;
+                    }
+                    else
+                    {
+                        imbalances[forecast.Date] -= forecast.Forecast;
                     }
                 }
+            }
 
-                return imbalances;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error calculating imbalances");
-                throw new Exception("Could not calculate imbalances", ex);
-            }
+            _logger.LogInformation("Calculated imbalances for Balancing Circle ID: {Id}", balancingCircleId);
+            return imbalances;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while calculating imbalances for Balancing Circle ID: {Id}", balancingCircleId);
+            throw;
         }
     }
+}
 }
