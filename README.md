@@ -36,7 +36,7 @@ Before you begin, ensure you have the following installed on your machine:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/energy-market-balancing-backend.git
+   git clone [https://github.com/yourusername/energy-market-balancing-backend.git]
    cd energy-market-balancing-backend
 
 ### API Endpoints
