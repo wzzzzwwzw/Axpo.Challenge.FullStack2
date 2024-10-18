@@ -13,10 +13,10 @@ namespace Axpo.Challenge.FullStack.Controllers
     public class BalancingController : ControllerBase
     {
         private readonly IBalancingService _balancingService;
-                private readonly ILogger<BalancingController> _logger; // Add this line
+        private readonly ILogger<BalancingController> _logger; // Add this line
 
 
-        public BalancingController(IBalancingService balancingService,ILogger<BalancingController> logger)
+        public BalancingController(IBalancingService balancingService, ILogger<BalancingController> logger)
         {
             _balancingService = balancingService;
             _logger = logger;
@@ -29,7 +29,7 @@ namespace Axpo.Challenge.FullStack.Controllers
             return Ok(circles);
         }
 
-           [HttpGet("member/{memberId}/forecast")]
+        [HttpGet("member/{memberId}/forecast")]
         public async Task<IActionResult> GetMemberForecast(int memberId)
         {
             var forecasts = await _balancingService.GetForecastDataForMemberAsync(memberId);
@@ -40,7 +40,7 @@ namespace Axpo.Challenge.FullStack.Controllers
             return Ok(forecasts);
         }
 
-      [HttpGet("{id}/imbalances")]
+        [HttpGet("{id}/imbalances")]
         public async Task<IActionResult> GetImbalances(int id)
         {
             try
@@ -60,5 +60,5 @@ namespace Axpo.Challenge.FullStack.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-}
+    }
 }

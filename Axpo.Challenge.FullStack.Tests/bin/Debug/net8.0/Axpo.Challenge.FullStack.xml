@@ -4,36 +4,6 @@
         <name>Axpo.Challenge.FullStack</name>
     </assembly>
     <members>
-        <member name="T:Axpo.Challenge.FullStack.Controllers.BalancingController">
-            <summary>
-            Controller for managing balancing operations.
-            </summary>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.#ctor(Axpo.Challenge.FullStack.Services.IBalancingService)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Axpo.Challenge.FullStack.Controllers.BalancingController"/> class.
-            </summary>
-            <param name="service">The balancing service.</param>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.GetBalancingCircles">
-            <summary>
-            Gets the list of balancing circles.
-            </summary>
-            <returns>A list of balancing circles.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.GetMemberForecast(System.Int32)">
-            <summary>
-            Gets the forecast data for a specific member.
-            </summary>
-            <param name="id">The member ID.</param>
-            <returns>The forecast data for the specified member.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Controllers.BalancingController.GetImbalances">
-            <summary>
-            Gets the imbalances for each balancing circle.
-            </summary>
-            <returns>A dictionary with the date and corresponding imbalance value.</returns>
-        </member>
         <member name="T:Axpo.Challenge.FullStack.Data.EnergyBalanceDbContext">
             <summary>
             Represents the database context for energy balance operations.
@@ -124,197 +94,29 @@
         <member name="M:Axpo.Challenge.FullStack.Migrations.SyncSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Axpo.Challenge.FullStack.Models.Domain.BalancingCircle">
-            <summary>
-            Represents a balancing circle.
-            </summary>
+        <member name="T:Axpo.Challenge.FullStack.Migrations.InitialCreate">
+            <inheritdoc />
         </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.BalancingCircle.Id">
-            <summary>
-            Gets or sets the unique identifier for the balancing circle.
-            </summary>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
         </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.BalancingCircle.Name">
-            <summary>
-            Gets or sets the name of the balancing circle.
-            </summary>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
         </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.BalancingCircle.Members">
-            <summary>
-            Gets or sets the members of the balancing circle.
-            </summary>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
         </member>
-        <member name="T:Axpo.Challenge.FullStack.Models.Domain.ForecastData">
-            <summary>
-            Represents forecast data for a member.
-            </summary>
+        <member name="T:Axpo.Challenge.FullStack.Migrations.AddForecastData">
+            <inheritdoc />
         </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.ForecastData.Id">
-            <summary>
-            Gets or sets the unique identifier for the forecast data.
-            </summary>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddForecastData.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
         </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.ForecastData.MemberId">
-            <summary>
-            Gets or sets the member ID associated with the forecast data.
-            </summary>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddForecastData.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
         </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.ForecastData.Member">
-            <summary>
-            Gets or sets the member associated with the forecast data.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.ForecastData.Date">
-            <summary>
-            Gets or sets the date of the forecast.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.ForecastData.Forecast">
-            <summary>
-            Gets or sets the forecast value.
-            </summary>
-        </member>
-        <member name="T:Axpo.Challenge.FullStack.Models.Domain.Member">
-            <summary>
-            Represents a member in the balancing circle.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.Id">
-            <summary>
-            Gets or sets the unique identifier for the member.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.Name">
-            <summary>
-            Gets or sets the name of the member.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.Type">
-            <summary>
-            Gets or sets the type of the member, e.g., "Producer" or "Consumer".
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.Category">
-            <summary>
-            Gets or sets the category of the member, e.g., "Solar", "Wind", "Retailer", "Industrials".
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.Forecasts">
-            <summary>
-            Gets or sets the collection of forecast data associated with the member.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.IsProducer">
-            <summary>
-            Gets or sets a value indicating whether the member is a producer.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.BalancingCircleId">
-            <summary>
-            Gets or sets the balancing circle ID associated with the member.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.Member.BalancingCircle">
-            <summary>
-            Gets or sets the balancing circle associated with the member.
-            </summary>
-        </member>
-        <member name="T:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry">
-            <summary>
-            Represents an entry in a timeseries.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry.Id">
-            <summary>
-            Gets or sets the unique identifier for the timeseries entry.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry.Date">
-            <summary>
-            Gets or sets the date of the timeseries entry.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry.Value">
-            <summary>
-            Gets or sets the value of the timeseries entry.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry.MemberId">
-            <summary>
-            Gets or sets the member ID associated with the timeseries entry.
-            </summary>
-        </member>
-        <member name="P:Axpo.Challenge.FullStack.Models.Domain.TimeseriesEntry.Member">
-            <summary>
-            Gets or sets the member associated with the timeseries entry.
-            </summary>
-        </member>
-        <member name="T:Axpo.Challenge.FullStack.Services.BalancingService">
-            <summary>
-            Service for managing balancing operations.
-            </summary>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.#ctor(System.Net.Http.HttpClient)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Axpo.Challenge.FullStack.Services.BalancingService"/> class.
-            </summary>
-            <param name="httpClient">The HTTP client.</param>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.GetBalancingCirclesAsync">
-            <summary>
-            Gets the list of balancing circles.
-            </summary>
-            <returns>A list of balancing circles.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.GetForecastDataForMemberAsync(System.Int32)">
-            <summary>
-            Gets the forecast data for a specific member.
-            </summary>
-            <param name="memberId">The member ID.</param>
-            <returns>The forecast data for the specified member.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.BalancingService.CalculateImbalancesAsync">
-            <summary>
-            Calculates the imbalances for each balancing circle.
-            </summary>
-            <returns>A dictionary with the date and corresponding imbalance value.</returns>
-        </member>
-        <member name="T:Axpo.Challenge.FullStack.Services.IBalancingService">
-            <summary>
-            Provides methods to manage balancing services.
-            </summary>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.IBalancingService.GetBalancingCirclesAsync">
-            <summary>
-            Gets the balancing circles asynchronously.
-            </summary>
-            <returns>A task that represents the asynchronous operation. The task result contains a collection of balancing circles.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.IBalancingService.GetForecastDataForMemberAsync(System.Int32)">
-            <summary>
-            Gets the forecast data for a specific member asynchronously.
-            </summary>
-            <param name="memberId">The ID of the member.</param>
-            <returns>A task that represents the asynchronous operation. The task result contains a collection of forecast data.</returns>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.Services.IBalancingService.CalculateImbalancesAsync">
-            <summary>
-            Calculates the imbalances asynchronously.
-            </summary>
-            <returns>A task that represents the asynchronous operation. The task result contains a dictionary with date and imbalance value.</returns>
-        </member>
-        <member name="T:Axpo.Challenge.FullStack.SeedData.DataSeeder">
-            <summary>
-            Provides methods to seed the database with initial data.
-            </summary>
-        </member>
-        <member name="M:Axpo.Challenge.FullStack.SeedData.DataSeeder.SeedDataAsync(Axpo.Challenge.FullStack.Data.EnergyBalanceDbContext,Microsoft.Extensions.Logging.ILoggerFactory)">
-            <summary>
-            Seeds the database with initial data if it is empty.
-            </summary>
-            <param name="context">The database context to be seeded.</param>
-            <param name="loggerFactory">The logger factory.</param>
-            <returns>A task that represents the asynchronous operation.</returns>
+        <member name="M:Axpo.Challenge.FullStack.Migrations.AddForecastData.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
         </member>
     </members>
 </doc>

@@ -183,3 +183,4 @@ C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.Fu
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\obj\Debug\net8.0\Axpo.Challenge.FullStack.pdb
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\obj\Debug\net8.0\Axpo.Challenge.FullStack.genruntimeconfig.cache
 C:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\obj\Debug\net8.0\ref\Axpo.Challenge.FullStack.dll
+c:\Users\RetailAdmin\OneDrive\Bureau\Axpo.Challenge.FullStack2\Axpo.Challenge.FullStack\obj\Debug\net8.0\Axpo.Challenge.FullStack.sourcelink.json
