@@ -47,10 +47,10 @@ The backend provides several API endpoints:
 - GET /api/v1/balancing/{id}/imbalances: Calculate and retrieve imbalances for a specific balancing circle.
   
 ### Architectural Decisions
--Entity Framework Core: Used for database interactions, allowing for an ORM-based approach to manage the database schema and migrations.
--Dependency Injection: Utilized to manage dependencies, enhancing modularity and testability.
--Service Layer: Implemented to handle business logic, keeping the controllers slim and focused on handling HTTP requests and responses.
--Logging: Integrated to monitor application behavior and facilitate debugging.
+- **Entity Framework Core**: Used for database interactions, allowing for an ORM-based approach to manage the database schema and migrations.
+- **Dependency Injection**: Utilized to manage dependencies, enhancing modularity and testability.
+- **Service Layer**: Implemented to handle business logic, keeping the controllers slim and focused on handling HTTP requests and responses.
+- **Logging**: Integrated to monitor application behavior and facilitate debugging.
 
 ## Future Improvements
 
