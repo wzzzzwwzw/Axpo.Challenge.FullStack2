@@ -62,8 +62,3 @@ The backend provides several API endpoints:
 ## Screenshots
 SQL Management Studio
 ![sqldatabase](https://github.com/user-attachments/assets/cf228ade-9931-4c35-9240-bfb4e584363e)
-
-
-## Testing Results
-- dotnet test
-![tests](https://github.com/user-attachments/assets/5b149dda-85b9-459c-ab96-13891aaa88c6)
